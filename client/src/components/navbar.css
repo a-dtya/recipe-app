@@ -1,0 +1,25 @@
+.navbar {
+    height:10vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+
+}
+.home{
+    margin-right: 1.2rem;
+    color: beige;
+}
+.login{
+    margin-right: 1.2rem;
+    color: beige;
+}
+.create{
+    margin-right: 1.2rem;
+    color: beige;
+}
+.saved{
+    margin-right: 1.2rem;
+    color: beige;
+}
