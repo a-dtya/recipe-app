@@ -11,6 +11,13 @@ function CreateRecipe () {
     const handleSubmit = (e)=>{
         setRecipe({...recipe, [e.target.name]:e.target.value})
     }
+    const [ingredient,setIngredient] = useState([])
+    const [val,setVal]=useState("")
+    const handleClick=(e)=>{
+      e.preventDefault()
+      setIngredient(prevList=>[...prevList,val])
+      setVal("")
+    }
   return (
     <>
     <div className='form'>
@@ -20,10 +27,18 @@ function CreateRecipe () {
     <input type="text" id="name" name="name" value={recipe.name} onChange={handleSubmit} required/>
 
     <label for="ingredient">Ingredient:</label>
-    <input type="text" id="ingredient" name="ingredient" required/>
+    <input type="text" id="ingredient" name="ingredient" value={val} onChange={(e)=>setVal(e.target.value)} required/>
+    <div className='btncontainer'><button className='ingredientstore' onClick={handleClick}>Submit</button></div>
+
+      <div className='ingredients'>
+      {ingredient.map(e=>{
+        return <li key={e}>{e}</li>
+      })}
+      </div>
 
     <label for="instructions">Instructions:</label>
-    <textarea id="instructions" name="instructions" rows="10" cols="50" value={recipe.instructions} onChange={handleSubmit} required></textarea>
+    
+    <textarea id="instructions" name="instructions" rows="5" cols="50" value={recipe.instructions} onChange={handleSubmit} required></textarea>
 
   <label for="imageURL">Image URL:</label>
   <input type="text" id="imageURL" name="imageURL" value={recipe.imageURL} onChange={handleSubmit} required/>
@@ -31,7 +46,7 @@ function CreateRecipe () {
   <label for="cookingTime">Cooking Time:</label>
   <input type="number" id="cookingTime" name="cookingTime" value={recipe.cookingTime} onChange={handleSubmit} required/>
 
-  <input type="submit" value="Submit"/>
+  
 </form>
 
     </div>

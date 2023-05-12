@@ -32,7 +32,7 @@
     color: #333;
   }
   
-  input[type="submit"] {
+  .ingredientstore {
     background-color: #ff5f6d;
     color: white;
     border: none;
@@ -41,7 +41,19 @@
     cursor: pointer;
   }
   
-  input[type="submit"]:hover {
+  .ingredientstore:hover {
     background-color: #ff444e;
   }
-  
+  .btncontainer{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+  .ingredients{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-evenly;
+  }
