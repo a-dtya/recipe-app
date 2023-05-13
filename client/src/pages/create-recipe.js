@@ -1,8 +1,10 @@
 import React,{useState} from 'react'
 import "./recipe.css"
+import axios from 'axios'
 function CreateRecipe () {
     const [recipe,setRecipe]=useState({
         name:"",
+        ingredient:[],
         instructions:"",
         imageURL:"",
         cookingTime:0,
@@ -16,19 +18,28 @@ function CreateRecipe () {
     const handleClick=(e)=>{
       e.preventDefault()
       setIngredient(prevList=>[...prevList,val])
+      setRecipe({...recipe,ingredient:ingredient})
       setVal("")
+    }
+    const handleForm = async(e)=>{
+      e.preventDefault()
+      try {
+        await axios.post("http://localhost:3001/recipe",recipe)
+      } catch (error) {
+        console.log(error)
+      }
     }
   return (
     <>
     <div className='form'>
-        <form className='formdata'>
+        <form className='formdata' onSubmit={handleForm}>
         <h3>Create Recipe</h3>
         <label for="name">Name:</label>
     <input type="text" id="name" name="name" value={recipe.name} onChange={handleSubmit} required/>
 
     <label for="ingredient">Ingredient:</label>
-    <input type="text" id="ingredient" name="ingredient" value={val} onChange={(e)=>setVal(e.target.value)} required/>
-    <div className='btncontainer'><button className='ingredientstore' onClick={handleClick}>Submit</button></div>
+    <input type="text" id="ingredient" name="ingredient" value={recipe.ingredient} onChange={(e)=>setVal(e.target.value)} required/>
+    <div className='btncontainer'><button className='ingredientstore' type='button' onClick={handleClick}>Submit</button></div>
 
       <div className='ingredients'>
       {ingredient.map(e=>{
@@ -46,7 +57,7 @@ function CreateRecipe () {
   <label for="cookingTime">Cooking Time:</label>
   <input type="number" id="cookingTime" name="cookingTime" value={recipe.cookingTime} onChange={handleSubmit} required/>
 
-  
+  <input type="submit" />
 </form>
 
     </div>
