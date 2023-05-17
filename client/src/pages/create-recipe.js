@@ -1,14 +1,17 @@
 import React,{useState} from 'react'
 import "./recipe.css"
 import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 function CreateRecipe () {
+    const userID = window.localStorage.getItem("userID")
+    const navigate = useNavigate()
     const [recipe,setRecipe]=useState({
         name:"",
         ingredient:[],
         instructions:"",
         imageURL:"",
         cookingTime:0,
-        recipeOwner:"",
+        recipeOwner:userID,
     })
     const handleSubmit = (e)=>{
         setRecipe({...recipe, [e.target.name]:e.target.value})
@@ -26,6 +29,7 @@ function CreateRecipe () {
       try {
         await axios.post("http://localhost:3001/recipe",recipe)
         alert('recipe created')
+        navigate("/")
       } catch (error) {
         console.log(error)
       }
