@@ -15,7 +15,27 @@ function Home() {
     },[])
   return (
     <>
-
+        <div className='home-parent'>
+            <h1 className='home-title'>Recipes</h1>
+            <div className='home-list'>
+                <ul>
+                    {
+                        recipe.map((r)=>{
+                            <div className='list-item'>
+                                <li key={r._id}>
+                                    <div>
+                                        <h4>{r.name}</h4>
+                                    </div>
+                                    <div>
+                                        <p>{r.instructions}</p>
+                                    </div>
+                                </li>
+                            </div>
+                        })
+                    }
+                </ul>
+            </div>
+        </div>
     </>
   )
 }
