@@ -21,7 +21,8 @@ function Home() {
                 <ul>
                     {
                         recipe.map((r)=>{
-                            <div className='list-item'>
+                            return(
+                                <div className='list-item'>
                                 <li key={r._id}>
                                     <div>
                                         <h4>{r.name}</h4>
@@ -31,6 +32,8 @@ function Home() {
                                     </div>
                                 </li>
                             </div>
+                            )
+                            
                         })
                     }
                 </ul>
