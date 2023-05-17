@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import axios from 'axios'
 function Home() {
-    const [recipe,setRecipe]=useState([])
+    const [recipe,setRecipe]=useState()
     useEffect(()=>{
         const fetchRecipe = async()=>{
             try {
