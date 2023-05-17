@@ -13,6 +13,16 @@ function Home() {
             
         }
     },[])
+    const saveRecipe = async(recipeID)=>{
+         
+        try {
+            const userID = window.localStorage.getItem("userID")
+            const response = await axios.put("http://localhost:3001/recipe",{recipeID,userID})
+            console.log(response.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
   return (
     <>
         <div className='home-parent'>
@@ -29,6 +39,9 @@ function Home() {
                                     </div>
                                     <div>
                                         <p>{r.instructions}</p>
+                                    </div>
+                                    <div>
+                                        <button onClick={()=>saveRecipe(r._id)}>Save</button>
                                     </div>
                                 </li>
                             </div>
