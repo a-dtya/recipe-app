@@ -1,7 +1,8 @@
 import React,{useEffect, useState} from 'react'
 import axios from 'axios'
 function Home() {
-    const [recipe,setRecipe]=useState()
+    const [recipe,setRecipe]=useState([])
+    const [savedrecipes,setSavedRecipes]=useState([])
     useEffect(()=>{
         const fetchRecipe = async()=>{
             try {
@@ -12,6 +13,16 @@ function Home() {
             }
             
         }
+        const fetchSavedRecipes = async()=>{
+            try {
+                const userID = window.localStorage.getItem("userID")
+                const response = await axios.get("http://localhost:3001/recipe/savedRecipes/ids",{userID})
+                setSavedRecipes(response.data)
+            } catch (error) {
+                
+            }
+        }
+        fetchRecipe()
     },[])
     const saveRecipe = async(recipeID)=>{
          
