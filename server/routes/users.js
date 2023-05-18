@@ -29,6 +29,8 @@ userRouter.post("/login",async(req,res)=>{
     const token = jwt.sign({id:user._id},"secret")
     res.json({token: token, userID: user._id})
 })
-
+const verifyToken = (req,res,next)=>{
+    
+}
 
 module.exports = userRouter
