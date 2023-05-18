@@ -17,7 +17,7 @@ function Home() {
             try {
                 const userID = window.localStorage.getItem("userID")
                 const response = await axios.get(`http://localhost:3001/recipe/savedRecipes/ids/${userID}`)
-                setSavedRecipes(response.data)
+                setSavedRecipes(response.data.savedRecipes)
             } catch (error) {
                 
             }
@@ -46,6 +46,11 @@ function Home() {
                             return(
                                 <div className='list-item'>
                                 <li key={r._id}>
+                                    <div>
+                                        {
+                                            savedrecipes.includes(r._id) && <h3>Already Saved</h3>
+                                        }
+                                    </div>
                                     <div>
                                         <h4>{r.name}</h4>
                                     </div>
